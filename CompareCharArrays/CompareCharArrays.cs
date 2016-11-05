@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 
 namespace CompareCharArrays
@@ -10,19 +9,27 @@ namespace CompareCharArrays
         {
             char[] inputOne = Console.ReadLine().ToCharArray();
             char[] inputTwo = Console.ReadLine().ToCharArray();
-            int lengthComp = inputOne.Length.CompareTo(inputTwo.Length);
 
-            if (lengthComp > 0)
+            for (int i = 0; i < Math.Min(inputOne.Length, inputTwo.Length); i++)
             {
-                Console.WriteLine(">");
+                if (inputOne[i] < inputTwo[i])
+                {
+                    Console.WriteLine("<");
+                    return;
+                }
+                else if (inputOne[i] > inputTwo[i])
+                {
+                    Console.WriteLine(">");
+                    return;
+                }
             }
-            else if (lengthComp == 0)
+            if (inputOne.Length == inputTwo.Length)
             {
                 Console.WriteLine("=");
             }
             else
             {
-                Console.WriteLine("<");
+                Console.WriteLine(inputOne.Length < inputTwo.Length ? "<" : ">");
             }
         }
     }
