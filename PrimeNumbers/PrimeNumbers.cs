@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,21 +9,30 @@ namespace PrimeNumbers
 {
     class PrimeNumbers
     {
-        static void Main(string[] args)
+
+        static void Main()
         {
             int n = int.Parse(Console.ReadLine());
-            int result = 0;
-            for (int i = 1; i <= n; i++)
+            bool result = false;
+            while (!result)
             {
-                for (int j = n; j >= 1; j--)
-                {
-                    if (i % j == 0 && i > result)
-                    {
-                        result = i;
-                    }
-                }
+                result = IsPrime(n);
+                n--;
             }
-            Console.WriteLine(result);
+            Console.WriteLine(n + 1);
+        }
+        public static bool IsPrime(int n)
+        {
+            int checker = 2;
+
+            while ((checker < n) & (n % checker != 0))
+            {
+                checker++;
+            }
+            if (checker == n)
+                return true;
+            else
+                return false;
         }
     }
 }

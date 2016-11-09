@@ -11,20 +11,37 @@ namespace BinarySearch
         static void Main(string[] args)
         {
             int arraySize = int.Parse(Console.ReadLine());
-            int[] array = new int[arraySize];
-            for (int i = 0; i < array.Length; i++)
+            int[] numbers = new int[arraySize];
+            for (int i = 0; i < numbers.Length; i++)
             {
-                array[i] = int.Parse(Console.ReadLine());
+                numbers[i] = int.Parse(Console.ReadLine());
             }
-            int search = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i] == search)
-                {
-                    Console.WriteLine(i);
-                }
-            }
+            int number = int.Parse(Console.ReadLine());
+            int index = GetIndex(numbers, number, 0, numbers.Length - 1);
+            Console.WriteLine(index);
         }
+
+        private static int GetIndex(int[] numbers, int number, int low, int high)
+        {
+            if (high < low)
+                return -1;
+
+            int mid = (low + high) / 2;
+
+            if (numbers[mid] < number)
+                return GetIndex(numbers, number, mid + 1, high);
+            else if (numbers[mid] > number)
+                return GetIndex(numbers, number, low, mid - 1);
+            else
+                return mid;
+        }
+
+        /*for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == search)
+            {
+                Console.WriteLine(i);
+            }*/
     }
 }
+
